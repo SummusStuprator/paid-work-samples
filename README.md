@@ -19,6 +19,10 @@ python -m unittest -v
 
 Nine tests pass on Python 3.11. They cover failure behavior as well as successful output. The test fixtures use synthetic example.com addresses.
 
+## Supplier catalog preflight sample
+
+[`catalog-validator/`](catalog-validator/) reports exact duplicates, conflicting product rows, missing fields, invalid pack quantities, and possible identifier collisions. It preserves SKU strings and treats supplier identity as part of the product key. Eight tests cover real ambiguity and failure cases, including multiline CSV, malformed rows, source preservation, and leading zeros. The included eight-row synthetic catalog produces five findings. A typical proposed adaptation to one agreed supplier format is **USD 250**, including focused tests, a report and one revision round.
+
 ## Contribution awaiting review
 
 [Chain.Love PR #3753](https://github.com/Chain-Love/chain-love/pull/3753) adds released SDK dependency metadata with source references. Three upstream validators passed locally. This is an open contribution, not an accepted commission or earned payment.

@@ -1,0 +1,9 @@
+supplier,sku,description,unit,pack_quantity
+Example Supply,001,Bolt,each,1
+Example Supply,001,Bolt,each,1
+Example Supply,001,Bolt,box,12
+Second Supplier,001,Bolt,each,1
+Example Supply,002,Cable,m,0.25
+Example Supply,003,Washer,each,0
+Example Supply,,Nut,each,1
+example supply, 002 ,Cable,m,0.25
