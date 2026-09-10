@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decimal Cycle Inspector</title>
+<style>
+:root{color-scheme:light;--ink:#142e39;--muted:#465d66;--line:#bbcbd0;--accent:#00604e;--paper:#fffef9;--wash:#edf4f1}
+*{box-sizing:border-box}body{margin:0;background:#e6eeeb;color:var(--ink);font:17px/1.55 system-ui,sans-serif}main{max-width:1050px;margin:36px auto;padding:32px;background:var(--paper);border:1px solid var(--line);border-radius:18px}header{border-bottom:1px solid var(--line);padding-bottom:22px}.eyebrow{font-size:.75rem;font-weight:750;text-transform:uppercase;letter-spacing:.14em;color:var(--accent)}h1{font-size:clamp(2rem,5vw,3rem);line-height:1.08;letter-spacing:-.04em;margin:10px 0 16px}h2{font-size:1.22rem;margin:0 0 12px}p{margin:10px 0}.intro{max-width:65ch;color:var(--muted)}.inputs{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:24px 0 18px}label{display:block;font-weight:700}input{display:block;width:100%;font:600 1.5rem ui-monospace,monospace;color:var(--ink);background:white;border:2px solid #728990;border-radius:7px;padding:9px 12px;margin:6px 0}input[aria-invalid=true]{border-color:#a32424}.hint{font-size:.83rem;color:var(--muted)}.error{font-size:.9rem;color:#971d1d;min-height:1.5em;margin:4px 0 0}button{font:inherit;color:var(--accent);background:var(--paper);border:1px solid var(--accent);border-radius:6px;padding:7px 11px;cursor:pointer}button:hover{background:#dbece5}:focus-visible{outline:3px solid #803e00;outline-offset:4px}.result{padding:22px;background:var(--wash);border-left:5px solid var(--accent);border-radius:8px}.equation{font:700 clamp(1.2rem,3vw,1.65rem)/1.5 ui-monospace,monospace;overflow-wrap:anywhere;margin:8px 0}.repeat{background:#c5e6d6;border-radius:3px}.metrics{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:14px}.metrics div{min-width:110px}.metrics dt{font-size:.8rem;color:var(--muted)}.metrics dd{margin:0;font:700 1.6rem ui-monospace,monospace}.trace{margin:26px 0}.table-wrap{max-height:340px;overflow:auto;border:1px solid var(--line);border-radius:7px}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:.9rem}caption{text-align:left;padding:12px;font-weight:650;background:#edf1ef}th,td{padding:9px 12px;text-align:left;border-bottom:1px solid #cfdbd7}thead th{background:#e2ebe7;position:sticky;top:0}tbody th{font-weight:500}tr.cycle-start{background:#d7ede3}td:last-child{font-weight:650}.explain{max-width:78ch;font-size:.92rem}.checks{display:flex;gap:8px;flex-wrap:wrap}.checks button{font:500 .9rem/1.5 ui-monospace,monospace}.reference{padding-top:24px;border-top:1px solid var(--line)}footer{font-size:.8rem;color:var(--muted);margin-top:26px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}[hidden]{display:none!important}
+@media(max-width:600px){main{margin:0;border-radius:0;border:0;padding:22px 16px}.inputs{gap:12px}input{font-size:1.25rem}.result{padding:16px}th,td{padding:8px 7px;font-size:.8rem}.metrics{gap:8px 18px}.table-wrap{max-height:290px}}
+</style>
+<main>
+<header><div class="eyebrow">Exact arithmetic / visible evidence</div><h1>Where does the decimal repeat?</h1><p class="intro">Change a fraction. Follow its remainders. See why the digits stop—or return to a cycle they have already visited.</p></header>
+<div class="inputs">
+<div><label for="numerator">Numerator</label><input id="numerator" type="text" inputmode="text" value="1" autocomplete="off" spellcheck="false" aria-describedby="numerator-hint numerator-error"><div id="numerator-hint" class="hint">Integer from −999 to 999</div><p id="numerator-error" class="error"></p></div>
+<div><label for="denominator">Denominator</label><input id="denominator" type="text" inputmode="numeric" value="7" autocomplete="off" spellcheck="false" aria-describedby="denominator-hint denominator-error"><div id="denominator-hint" class="hint">Integer from 1 to 250</div><p id="denominator-error" class="error"></p></div>
+</div>
+<p class="sr-only" id="announcement" role="status" aria-live="polite" aria-atomic="true"></p>
+<p id="empty" hidden>Enter two valid integers to inspect their decimal. Previous results have been cleared.</p>
+<section id="results" aria-labelledby="result-heading">
+<div class="result"><h2 id="result-heading">Exact decimal</h2><div id="equation" class="equation"></div><p id="reduction"></p><dl class="metrics"><div><dt>Non-repeating digits</dt><dd id="prefix-length"></dd></div><div><dt>Repeating-cycle digits</dt><dd id="cycle-length"></dd></div></dl><p id="cycle-summary" class="explain"></p></div>
+<section class="trace" aria-labelledby="trace-heading"><h2 id="trace-heading">The remainder trail</h2><p id="trace-intro" class="explain"></p><div id="trace-wrap" class="table-wrap" role="region" aria-label="Scrollable remainder trace" tabindex="0"><table><caption id="trace-caption"></caption><thead><tr><th scope="col">Step</th><th scope="col">Remainder in</th><th scope="col">Digit</th><th scope="col">Remainder out</th></tr></thead><tbody id="trace-body"></tbody></table></div><p id="trace-end" class="explain"></p></section>
+</section>
+<section class="reference" aria-labelledby="reference-heading"><h2 id="reference-heading">Reference checks</h2><p class="explain">Each button loads a known fraction. Parentheses enclose the entire repeating block; only digits after the decimal point count toward the prefix.</p><div class="checks"><button type="button" data-n="1" data-d="3">1/3 = 0.(3)</button><button type="button" data-n="1" data-d="6">1/6 = 0.1(6)</button><button type="button" data-n="1" data-d="7">1/7 = 0.(142857)</button><button type="button" data-n="1" data-d="8">1/8 = 0.125</button><button type="button" data-n="-22" data-d="7">−22/7 = −3.(142857)</button></div></section>
+<footer>Works entirely offline. Digits come from integer long division, not a rounded fractional value. No downloads, saved history or network connection.</footer>
+</main>
+<script>
+'use strict';
+// All arithmetic operands are small integers. Never use n / d as a digit string.
+function gcd(a, b) {
+  while (b !== 0) { const next = a % b; a = b; b = next; }
+  return a;
+}
+function inspectFraction(numerator, denominator) {
+  const divisor = gcd(Math.abs(numerator), denominator);
+  const n = numerator / divisor, d = denominator / divisor;
+  const magnitude = Math.abs(n);
+  const integerPart = Math.floor(magnitude / d);
+  let remainder = magnitude % d;
+  const initialRemainder = remainder;
+  const seen = new Map(), digits = [], trace = [];
+  // A remainder determines every following digit. Its first recurrence closes
+  // the shortest cycle; zero terminates. At most d - 1 nonzero states exist.
+  while (remainder !== 0 && !seen.has(remainder)) {
+    seen.set(remainder, digits.length);
+    const expanded = remainder * 10;
+    const digit = Math.floor(expanded / d), next = expanded % d;
+    trace.push({ step: digits.length + 1, incoming: remainder, digit, outgoing: next });
+    digits.push(String(digit));
+    remainder = next;
+  }
+  const cycleStart = remainder === 0 ? digits.length : seen.get(remainder);
+  const prefix = digits.slice(0, cycleStart).join('');
+  const cycle = digits.slice(cycleStart).join('');
+  const sign = n < 0 ? '-' : '';
+  const decimal = sign + integerPart + (digits.length ? '.' + prefix + (cycle ? '(' + cycle + ')' : '') : '');
+  return { n, d, integerPart, initialRemainder, prefix, cycle, cycleStart, decimal, trace, remainder };
+}
+function parseField(text, name, min, max) {
+  const value = text.trim();
+  if (!value) return { error: name + ' is blank. Enter an integer.' };
+  if (!/^[+-]?\d+$/.test(value)) {
+    if (/^[+-]?(?:\d+\.\d*|\d*\.\d+)$/.test(value))
+      return { error: name + ' must use integer notation; decimal points are not accepted.' };
+    return { error: name + ' must contain an integer, not letters, fractions or exponent notation.' };
+  }
+  const number = Number(value);
+  if (name === 'Denominator' && number === 0)
+    return { error: 'The denominator cannot be zero.' };
+  if (!Number.isSafeInteger(number) || number < min || number > max)
+    return { error: name + ' must be from ' + min + ' to ' + max + '.' };
+  return { value: number === 0 ? 0 : number };
+}
+const byId = id => document.getElementById(id);
+function update() {
+  const a = parseField(byId('numerator').value, 'Numerator', -999, 999);
+  const b = parseField(byId('denominator').value, 'Denominator', 1, 250);
+  for (const [id, parsed] of [['numerator', a], ['denominator', b]]) {
+    byId(id + '-error').textContent = parsed.error || '';
+    byId(id).setAttribute('aria-invalid', String(Boolean(parsed.error)));
+  }
+  // Clear both visible and hidden content before any early return.
+  for (const id of ['equation','reduction','prefix-length','cycle-length','cycle-summary','trace-intro','trace-caption','trace-body','trace-end']) byId(id).replaceChildren();
+  const invalid = Boolean(a.error || b.error);
+  byId('results').hidden = invalid; byId('empty').hidden = !invalid;
+  if (invalid) { byId('announcement').textContent = [a.error, b.error].filter(Boolean).join(' '); return; }
+  const result = inspectFraction(a.value, b.value);
+  const reduced = result.n + '/' + result.d;
+  const equation = byId('equation');
+  equation.append(document.createTextNode(a.value + '/' + b.value + ' = '));
+  if (result.cycle) {
+    equation.append(document.createTextNode(result.decimal.slice(0, result.decimal.indexOf('('))));
+    const block = document.createElement('span'); block.className = 'repeat'; block.textContent = '(' + result.cycle + ')'; equation.append(block);
+  } else equation.append(document.createTextNode(result.decimal));
+  byId('reduction').textContent = 'Reduced fraction: ' + reduced + (a.value === result.n && b.value === result.d ? ' (already in lowest terms).' : '.');
+  byId('prefix-length').textContent = result.prefix.length;
+  byId('cycle-length').textContent = result.cycle.length;
+  byId('cycle-summary').textContent = result.cycle ? 'The highlighted block repeats forever. The prefix has ' + result.prefix.length + ' digit(s) before that block begins.' : 'This decimal terminates. Its ' + result.prefix.length + ' fractional digit(s) form the non-repeating prefix; there is no cycle.';
+  byId('trace-intro').textContent = 'Use the reduced fraction’s magnitude: ' + Math.abs(result.n) + ' = ' + result.integerPart + ' × ' + result.d + ' + ' + result.initialRemainder + '. Then each row satisfies 10 × remainder in = digit × ' + result.d + ' + remainder out.' + (result.n < 0 ? ' Apply the negative sign once to the completed decimal.' : '');
+  byId('trace-caption').textContent = 'Long division by ' + result.d + (result.cycle ? ' — tinted row starts the cycle' : '');
+  byId('trace-wrap').hidden = result.trace.length === 0;
+  const rows = document.createDocumentFragment();
+  for (const row of result.trace) {
+    const tr = document.createElement('tr');
+    if (result.cycle && row.step === result.cycleStart + 1) tr.className = 'cycle-start';
+    for (const [i, value] of [row.step, row.incoming, row.digit, row.outgoing].entries()) {
+      const cell = document.createElement(i === 0 ? 'th' : 'td');
+      if (i === 0) cell.scope = 'row';
+      cell.textContent = String(value); tr.append(cell);
+    }
+    rows.append(tr);
+  }
+  byId('trace-body').append(rows);
+  byId('trace-end').textContent = result.cycle ? 'Remainder ' + result.remainder + ' returns to the input of step ' + (result.cycleStart + 1) + '. Repeating that state repeats exactly the same ' + result.cycle.length + ' digit(s).' : result.trace.length ? 'The final remainder is 0. Division is complete.' : 'The initial remainder is 0: an integer needs no fractional division steps.';
+  byId('announcement').textContent = a.value + ' divided by ' + b.value + ' equals ' + result.decimal + '. Reduced fraction ' + reduced + '. Non-repeating length ' + result.prefix.length + ', cycle length ' + result.cycle.length + '.';
+}
+for (const id of ['numerator','denominator']) byId(id).addEventListener('input', update);
+for (const button of document.querySelectorAll('[data-n]')) button.addEventListener('click', () => {
+  byId('numerator').value = button.dataset.n; byId('denominator').value = button.dataset.d; update();
+});
+update();
+</script>
+</html>
