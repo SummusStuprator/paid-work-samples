@@ -25,6 +25,10 @@ Nine tests pass on Python 3.11. They cover failure behavior as well as successfu
 
 ## Accepted upstream contributions
 
+[Order-match preflight](order-match-preflight/) is an executable JavaScript sample for store-scoped candidate selection and ambiguity handling. It includes ten synthetic acceptance tests and explicit production limitations.
+
+[agenticjobs PR #75](https://github.com/profullstack/agenticjobs/pull/75) preserves open salary bounds in JobPosting structured data. Merged September 11, 2026, with six new regression tests, 36 focused tests passing, and a successful local build. Its small reward has been invoiced and remains unpaid.
+
 [agenticjobs PR #50](https://github.com/profullstack/agenticjobs/pull/50) clarifies one-sided salary bounds in listing summaries. The maintainers merged it on September 10, 2026; 39 focused tests and the build passed locally. The small advertised reward has been invoiced and remains unpaid.
 
 [Chain.Love PR #3753](https://github.com/Chain-Love/chain-love/pull/3753) adds released SDK dependency metadata with source references. Three upstream validators passed locally, and the maintainers merged it on September 10, 2026. Grant assessment and any payment remain unconfirmed.
