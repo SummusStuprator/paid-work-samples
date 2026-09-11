@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "rows_checked": 8,
+  "distinct_handles": 3,
+  "variant_rows": 5,
+  "distinct_variant_keys": 4,
+  "additional_image_rows": 1,
+  "finding_count": 4,
+  "counts_by_kind": {
+    "missing_handle": 1,
+    "repeated_variant_tuple": 1,
+    "sku_used_by_multiple_variant_keys": 1,
+    "variant_data_without_options": 1
+  },
+  "line_reference": "Physical CSV line where a record ends; header is line 1.",
+  "policy": "Review only. No import, merge, deletion, normalization or store access.",
+  "findings": [
+    {
+      "kind": "repeated_variant_tuple",
+      "line": 5,
+      "handle": "demo-tee",
+      "values": [
+        "S",
+        "",
+        ""
+      ],
+      "first_line": 2,
+      "changed_variant_columns": [
+        "SKU",
+        "Price"
+      ]
+    },
+    {
+      "kind": "sku_used_by_multiple_variant_keys",
+      "line": 7,
+      "handle": "demo-hoodie",
+      "sku": "003",
+      "first_line": 6
+    },
+    {
+      "kind": "variant_data_without_options",
+      "line": 8,
+      "handle": "demo-cap",
+      "columns": [
+        "Price",
+        "SKU"
+      ]
+    },
+    {
+      "kind": "missing_handle",
+      "line": 9
+    }
+  ]
+}

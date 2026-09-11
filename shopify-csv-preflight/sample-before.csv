@@ -1,0 +1,9 @@
+URL handle,Title,Option1 name,Option1 value,Option2 name,Option2 value,SKU,Price,Product image URL,Image position
+demo-tee,Demo tee,Size,S,,,001,25.00,https://example.com/tee-front.jpg,1
+demo-tee,,Size,M,,,002,25.00,,
+demo-tee,,,,,,,,https://example.com/tee-back.jpg,2
+demo-tee,,Size,S,,,009,29.00,,
+demo-hoodie,Demo hoodie,Size,L,,,003,45.00,,
+demo-hoodie,,Size,XL,,,003,45.00,,
+demo-cap,Demo cap,,,,,010,15.00,,
+,Missing handle,Size,S,,,011,20.00,,

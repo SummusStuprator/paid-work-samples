@@ -23,6 +23,10 @@ Nine tests pass on Python 3.11. They cover failure behavior as well as successfu
 
 [`catalog-validator/`](catalog-validator/) reports exact duplicates, conflicting product rows, missing fields, invalid pack quantities, and possible identifier collisions. It preserves SKU strings and treats supplier identity as part of the product key. Eight tests cover real ambiguity and failure cases, including multiline CSV, malformed rows, source preservation, and leading zeros. The included eight-row synthetic catalog produces five findings. A typical proposed adaptation to one agreed supplier format is **USD 250**, including focused tests, a report and one revision round.
 
+## Shopify CSV variant preflight
+
+[`shopify-csv-preflight/`](shopify-csv-preflight/) distinguishes size/color rows and additional images from repeated variant tuples in a synthetic catalogue. It reports conflicting SKU/price records and missing option identity without importing, merging or deleting anything. The example includes an eight-row input, a readable report and executable regression tests.
+
 ## Accepted upstream contributions
 
 [Order-match preflight](order-match-preflight/) is an executable JavaScript sample for store-scoped candidate selection and ambiguity handling. It includes ten synthetic acceptance tests and explicit production limitations.
