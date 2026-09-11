@@ -2,6 +2,8 @@
 
 This small, read-only demo distinguishes repeated variant records from ordinary size/color rows and extra product images. It is AI-authored, uses synthetic data, and has not been run against any buyer's store. No Shopify access, installation or credentials are needed.
 
+For a nontechnical walkthrough, open [preview.html](preview.html) in a browser. It uses four rows from the same synthetic sample to explain sizes, images and a conflicting record, followed by an example review milestone. It is a self-contained static page with no uploads, scripts, telemetry or live-store actions.
+
 Run with Python 3.10 or later; no packages to install:
 
 ```sh
