@@ -31,9 +31,13 @@ Nine tests pass on Python 3.11. They cover failure behavior as well as successfu
 
 [`connectome-input-check/`](connectome-input-check/) validates a small normalized directed graph, preserving integer identifiers, reverse edges, self-edges and isolated nodes. It produces deterministic graph and original-file hashes, rejects ambiguous inputs, and records declared provenance. Sixteen tests and an invented fixture demonstrate the input contract; this is not a completed real-data importer or a scientific result.
 
-## Accepted upstream contributions
-
 [Order-match preflight](order-match-preflight/) is an executable JavaScript sample for store-scoped candidate selection and ambiguity handling. It includes ten synthetic acceptance tests and explicit production limitations.
+
+## Driver timestamp reproduction
+
+[`bno085-timestamp-check/`](bno085-timestamp-check/) reproduces two timestamp-contract discrepancies in a pinned public BNO085 driver using invented packet bytes. Two control checks pass and two contract checks fail against the unmodified upstream source. This is an offline reproduction, not a hardware-tested fix or an explanation of physical heading drift.
+
+## Accepted upstream contributions
 
 [agenticjobs PR #75](https://github.com/profullstack/agenticjobs/pull/75) preserves open salary bounds in JobPosting structured data. Merged September 11, 2026, with six new regression tests, 36 focused tests passing, and a successful local build. Its small reward has been invoiced and remains unpaid.
 
