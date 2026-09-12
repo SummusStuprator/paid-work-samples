@@ -27,6 +27,9 @@ All examples use synthetic players; do not submit private game or account data.
 
 ## What this sample is
 
+See [the state-machine guide](STATE-MACHINE.md) for the lifecycle, ordered status
+checks, demonstration trace and the boundary between trusted host code and clients.
+
 An AI-authored, executable demonstration for conversations about automated game-show hosting.
 
 Run `python host.py` for a synthetic round and `python -m unittest -v` for checks.
