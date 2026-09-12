@@ -1,0 +1,8 @@
+{
+  "dataset": "Synthetic Summus Code fixture; not neuroscience data",
+  "release": "fixture-1",
+  "source_url": "https://github.com/SummusStuprator/paid-work-samples/tree/codex/paid-work-samples/connectome-input-check",
+  "license": "MIT (fixture and code)",
+  "license_url": "https://github.com/SummusStuprator/paid-work-samples/blob/codex/paid-work-samples/connectome-input-check/LICENSE",
+  "normalization": "Invented nodes and directed pairs, already aggregated. IDs deliberately exercise uint64 precision. No real fly data, dynamics, neurotransmitter labels or biological claim."
+}

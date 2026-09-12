@@ -27,6 +27,10 @@ Nine tests pass on Python 3.11. They cover failure behavior as well as successfu
 
 [`shopify-csv-preflight/`](shopify-csv-preflight/) distinguishes size/color rows and additional images from repeated variant tuples in a synthetic catalogue. It reports conflicting SKU/price records and missing option identity without importing, merging or deleting anything. The example includes an eight-row input, a readable report and executable regression tests.
 
+## Connectome input validation
+
+[`connectome-input-check/`](connectome-input-check/) validates a small normalized directed graph, preserving integer identifiers, reverse edges, self-edges and isolated nodes. It produces deterministic graph and original-file hashes, rejects ambiguous inputs, and records declared provenance. Sixteen tests and an invented fixture demonstrate the input contract; this is not a completed real-data importer or a scientific result.
+
 ## Accepted upstream contributions
 
 [Order-match preflight](order-match-preflight/) is an executable JavaScript sample for store-scoped candidate selection and ambiguity handling. It includes ten synthetic acceptance tests and explicit production limitations.
