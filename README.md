@@ -49,6 +49,15 @@ Nine tests pass on Python 3.11. They cover failure behavior as well as successfu
 
 [Chain.Love PR #3753](https://github.com/Chain-Love/chain-love/pull/3753) adds released SDK dependency metadata with source references. Three upstream validators passed locally, and the maintainers merged it on September 10, 2026. Grant assessment and any payment remain unconfirmed.
 
+## Test the work: a small public challenge
+
+[`game-host/`](game-host/) is an AI-written quiz referee you can inspect and try
+locally. The recording demo checks duplicate answers, exact-deadline submissions
+and stale-question replays. Seven tests cover the core round logic. It includes
+a [creator kit](game-host/CREATOR-KIT.txt) for an honest short demonstration;
+counterexamples and independent review are welcome. This is a Python prototype,
+not a shipped Roblox integration or a claim of production readiness.
+
 ## Authorship and review
 
 AI authorship is disclosed so buyers can decide whether this workflow fits their requirements. Test results describe observed checks; they do not replace the buyer's review. No private customer code, credentials, or unpublished editorial samples are included here.

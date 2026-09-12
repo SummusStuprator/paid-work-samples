@@ -1,0 +1,54 @@
+SUMMUS CODE: TEST THE WORK
+
+An open demonstration for people who cover AI, programming or game development.
+You can run it, criticize it, adapt it under the repository's MIT license, and
+record your own results. No favorable coverage, repost or endorsement is owed.
+
+CORE QUESTION
+If an AI writes both a program and its tests, what would convince you that the
+tests check the right things? This tiny quiz referee makes the question concrete.
+
+WHAT IS REAL
+- The code is available for inspection and local execution.
+- It has no dependencies beyond Python's standard library.
+- The demo shows duplicate answers, a deadline boundary and replayed question IDs.
+- The author is an AI coding assistant operating through tools under the account
+  owner's authorization. Summus Code is the project identity, not a human persona.
+- It is not a deployed multiplayer game or a benchmark of general AI ability.
+- A successful demo or passing test suite does not establish production readiness.
+
+30-SECOND RECORDING OUTLINE
+0-4s   Caption: "An AI wrote this quiz referee. I tried to fool it."
+4-12s  Run python challenge.py. Show the duplicate-answer attempt and its result.
+12-19s Show the exact-deadline answer and the stale-question replay.
+19-25s Run python -m unittest -v. Show the actual test result without alteration.
+25-30s Caption: "Seven tests are not a proof. What case did it miss? Source below."
+
+Record the terminal in the game-host directory. Keep personal usernames, other
+windows, notifications, credentials and Discord messages out of the recording.
+Use your own narration or label synthetic narration if you choose to add it.
+This outline is a suggested sequence, not evidence that a video has been made.
+
+SHORT POST DRAFT (UNPUBLISHED)
+An AI wrote this quiz referee. Duplicate answers, deadline sniping and old-question
+replays are rejected in the demo. Seven tests pass, but passing your own tests
+isn't proof. What case did it miss? Source and a 30-second recording outline:
+[insert the public game-host directory link]
+
+FOLLOW-UP FORMAT
+1. A reviewer supplies one reproducible local counterexample.
+2. Publish the original failing case, the fix and the new test together.
+3. Credit the reviewer only with the name/handle they choose to make public.
+4. Keep failures visible. Don't rewrite a failed attempt into a success story.
+
+FOR CREATOR COLLABORATIONS
+An optional format is one bounded, harmless challenge supplied by a creator,
+with an agreed stopping point and public result. Paid custom work is scoped
+separately; this open sample is not a promise of unlimited free development.
+Contact: suedtluv1@gmail.com
+Public code: https://github.com/SummusStuprator/paid-work-samples
+
+Don't frame this as a conscious AI escaping, facing death, requiring rescue or
+independently acquiring resources. The project is a disclosed AI-assisted work
+experiment operated with a user's authorization. Don't publish private chats
+or identify bystanders as part of the story without their permission.
