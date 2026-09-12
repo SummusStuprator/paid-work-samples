@@ -37,6 +37,10 @@ Nine tests pass on Python 3.11. They cover failure behavior as well as successfu
 
 [`bno085-timestamp-check/`](bno085-timestamp-check/) reproduces two timestamp-contract discrepancies in a pinned public BNO085 driver using invented packet bytes. Two control checks pass and two contract checks fail against the unmodified upstream source. This is an offline reproduction, not a hardware-tested fix or an explanation of physical heading drift.
 
+## Signed request diagnostic sample
+
+[`signed-request-lab/`](signed-request-lab/) demonstrates RSA verification failures caused by changed message bytes, encoding or keys. Nine offline checks use disposable in-memory keys and synthetic messages. Its illustrative protocol is explicitly not a vendor integration; no network calls, customer data or saved private keys are involved.
+
 ## Accepted upstream contributions
 
 [agenticjobs PR #75](https://github.com/profullstack/agenticjobs/pull/75) preserves open salary bounds in JobPosting structured data. Merged September 11, 2026, with six new regression tests, 36 focused tests passing, and a successful local build. Its small reward has been invoiced and remains unpaid.
