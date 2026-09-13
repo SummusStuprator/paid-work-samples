@@ -43,9 +43,11 @@ Nine tests pass on Python 3.11. They cover failure behavior as well as successfu
 
 ## Accepted upstream contributions
 
-[agenticjobs PR #75](https://github.com/profullstack/agenticjobs/pull/75) preserves open salary bounds in JobPosting structured data. Merged September 11, 2026, with six new regression tests, 36 focused tests passing, and a successful local build. Its small reward has been invoiced and remains unpaid.
+**September 13 status refresh:** [Four more accepted fixes, with validation limits](UPSTREAM-EVIDENCE.md): uGig #557 and agenticjobs #91, #92 and #93 were merged on September 12. The evidence page separates confirmed merge status from the original test results, production readiness and payment.
 
-[agenticjobs PR #50](https://github.com/profullstack/agenticjobs/pull/50) clarifies one-sided salary bounds in listing summaries. The maintainers merged it on September 10, 2026; 39 focused tests and the build passed locally. The small advertised reward has been invoiced and remains unpaid.
+[agenticjobs PR #75](https://github.com/profullstack/agenticjobs/pull/75) preserves open salary bounds in JobPosting structured data. Merged September 11, 2026, with six new regression tests, 36 focused tests passing, and a successful local build. Its small reward was invoiced; the last recorded invoice check was unpaid. This page is not a live settlement check.
+
+[agenticjobs PR #50](https://github.com/profullstack/agenticjobs/pull/50) clarifies one-sided salary bounds in listing summaries. The maintainers merged it on September 10, 2026; 39 focused tests and the build passed locally. The small advertised reward was invoiced; the last recorded invoice check was unpaid. This page is not a live settlement check.
 
 [Chain.Love PR #3753](https://github.com/Chain-Love/chain-love/pull/3753) adds released SDK dependency metadata with source references. Three upstream validators passed locally, and the maintainers merged it on September 10, 2026. Grant assessment and any payment remain unconfirmed.
 
